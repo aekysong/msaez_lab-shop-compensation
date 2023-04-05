@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import labshopcompensation.InventoryApplication;
+import labshopcompensation.domain.StockDecreased;
+import labshopcompensation.domain.StockIncreased;
 import lombok.Data;
 
 @Entity
@@ -18,7 +20,13 @@ public class Inventory {
     private Long stock;
 
     @PostPersist
-    public void onPostPersist() {}
+    public void onPostPersist() {
+        StockDecreased stockDecreased = new StockDecreased(this);
+        stockDecreased.publishAfterCommit();
+
+        StockIncreased stockIncreased = new StockIncreased(this);
+        stockIncreased.publishAfterCommit();
+    }
 
     public static InventoryRepository repository() {
         InventoryRepository inventoryRepository = InventoryApplication.applicationContext.getBean(
@@ -32,6 +40,8 @@ public class Inventory {
         Inventory inventory = new Inventory();
         repository().save(inventory);
 
+        StockDecreased stockDecreased = new StockDecreased(inventory);
+        stockDecreased.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
@@ -41,6 +51,8 @@ public class Inventory {
             inventory // do something
             repository().save(inventory);
 
+            StockDecreased stockDecreased = new StockDecreased(inventory);
+            stockDecreased.publishAfterCommit();
 
          });
         */
@@ -52,6 +64,8 @@ public class Inventory {
         Inventory inventory = new Inventory();
         repository().save(inventory);
 
+        StockIncreased stockIncreased = new StockIncreased(inventory);
+        stockIncreased.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
@@ -61,6 +75,8 @@ public class Inventory {
             inventory // do something
             repository().save(inventory);
 
+            StockIncreased stockIncreased = new StockIncreased(inventory);
+            stockIncreased.publishAfterCommit();
 
          });
         */

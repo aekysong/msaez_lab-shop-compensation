@@ -42,6 +42,8 @@ public class Delivery {
         Delivery delivery = new Delivery();
         repository().save(delivery);
 
+        DeliveryStarted deliveryStarted = new DeliveryStarted(delivery);
+        deliveryStarted.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
@@ -51,6 +53,8 @@ public class Delivery {
             delivery // do something
             repository().save(delivery);
 
+            DeliveryStarted deliveryStarted = new DeliveryStarted(delivery);
+            deliveryStarted.publishAfterCommit();
 
          });
         */

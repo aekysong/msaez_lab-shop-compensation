@@ -1,7 +1,7 @@
 # 
 
 ## Model
-www.msaez.io/#/courses/cna-full/8fd61270-c481-11ed-ad36-1bfd28bd1d42/compensation-correlation-2022
+www.msaez.io/#/storming/aeky-lab-shop-compensation
 
 ## Before Running Services
 ### Make sure there is a Kafka server running
