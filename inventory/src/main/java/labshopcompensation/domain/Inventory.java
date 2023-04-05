@@ -6,6 +6,7 @@ import javax.persistence.*;
 import labshopcompensation.InventoryApplication;
 import labshopcompensation.domain.StockDecreased;
 import labshopcompensation.domain.StockIncreased;
+import labshopcompensation.domain.StockRegistered;
 import lombok.Data;
 
 @Entity
@@ -26,6 +27,9 @@ public class Inventory {
 
         StockIncreased stockIncreased = new StockIncreased(this);
         stockIncreased.publishAfterCommit();
+
+        StockRegistered stockRegistered = new StockRegistered(this);
+        stockRegistered.publishAfterCommit();
     }
 
     public static InventoryRepository repository() {

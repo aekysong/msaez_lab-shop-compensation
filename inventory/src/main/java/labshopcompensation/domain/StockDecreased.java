@@ -10,7 +10,6 @@ import lombok.*;
 public class StockDecreased extends AbstractEvent {
 
     private Long id;
-    private String productId;
     private Integer qty;
 
     public StockDecreased(Inventory aggregate) {

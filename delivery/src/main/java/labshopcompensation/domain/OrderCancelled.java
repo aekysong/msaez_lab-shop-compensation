@@ -7,16 +7,13 @@ import lombok.*;
 
 @Data
 @ToString
-public class StockIncreased extends AbstractEvent {
+public class OrderCancelled extends AbstractEvent {
 
     private Long id;
+    private String productId;
     private Integer qty;
-
-    public StockIncreased(Inventory aggregate) {
-        super(aggregate);
-    }
-
-    public StockIncreased() {
-        super();
-    }
+    private String customerId;
+    private Double amount;
+    private String status;
+    private String address;
 }
